@@ -236,5 +236,42 @@ footer {
     header nav ul li {
         margin: 10px 0;
     }
+/* Secret Projects Styles */
+.secret-vibe {
+    background-color: #000;
+    color: #ff4757;
+    border: 2px dashed #ff4757;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.secret-vibe::before {
+    content: 'TOP SECRET';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+    letter-spacing: 5px;
+}
+
+.secret-text {
+    font-size: 1.2em;
+    color: #ff4757;
+    position: relative;
+    z-index: 1;
+}
+
+.secret-vibe:hover {
+    background-color: #111;
+}
+
+.secret-vibe:hover::before {
+    color: rgba(255, 255, 255, 0.2);
+}
+    
 }
 
