@@ -14,29 +14,33 @@ function checkCode() {
     if (JSON.stringify(userCode) === JSON.stringify(correctCode)) {
         alert('Access Granted!');
     } else {
-        startDestruction();
+        fetchUserIPAndLocation(); // Fetch IP and Location if wrong code entered
     }
 }
 
-function startDestruction() {
-    let countdown = 10;
-    const countdownElement = document.getElementById('countdown');
-    const timerElement = document.getElementById('timer');
-    
-    countdownElement.classList.remove('hidden');
-    
-    const interval = setInterval(() => {
-        countdown--;
-        timerElement.textContent = countdown;
-        
-        if (countdown <= 0) {
-            clearInterval(interval);
-            destroySite();
-        }
-    }, 1000);
+function fetchUserIPAndLocation() {
+    const apiKey = 'a261b063b7c517fd40a8c791c9a82175'; // Replace with your ipapi API key
+    const apiURL = `https://ipapi.co/json/`;
+
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+            const { ip, city, region, country_name } = data;
+            displayIPandLocation(ip, city, region, country_name);
+        })
+        .catch(error => {
+            console.error('Error fetching IP and location:', error);
+        });
 }
 
-function destroySite() {
-    document.body.classList.add('destruction');
+function displayIPandLocation(ip, city, region, country) {
+    const locationInfo = `Unauthorized access attempt detected from IP: ${ip}, Location: ${city}, ${region}, ${country}`;
+    
+    alert(locationInfo); // Alert the user (or log the info)
+    
+    // Optionally display it on the webpage
+    const countdownElement = document.getElementById('countdown');
+    countdownElement.innerHTML = locationInfo;
+    countdownElement.classList.remove('hidden');
 }
 
