@@ -63,7 +63,7 @@ header nav ul li a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #222; /* You can change this to an image or gradient if you want */
+    background-color: #222;
     text-align: center;
     color: white;
 }
@@ -103,23 +103,119 @@ header nav ul li a:hover {
     background-color: #ff4757;
 }
 
-.about-section, .projects-section, .contact-section {
+/* About Section */
+.about-section {
     padding: 100px 20px;
     text-align: center;
 }
 
-.about-section h2, .projects-section h2, .contact-section h2 {
+.about-section h2 {
     font-size: 2.5em;
     margin-bottom: 30px;
     color: #1e90ff;
 }
 
-.about-section p, .projects-section p, .contact-section p {
+.about-photo {
+    margin-bottom: 30px;
+}
+
+.about-photo img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #ff4757;
+}
+
+.about-section p {
     font-size: 1.2em;
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto;
     color: #555;
+}
+
+/* Projects Section */
+.projects-section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.projects-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #1e90ff;
+}
+
+.project-box {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+.project-box:hover {
+    transform: translateY(-10px);
+}
+
+.project-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #ff4757;
+}
+
+.project-box p {
+    font-size: 1.1em;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #1e90ff;
+}
+
+.contact-section form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-section input, .contact-section textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1.1em;
+}
+
+.contact-section button {
+    padding: 15px 30px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: 0.3s ease;
+}
+
+.contact-section button:hover {
+    background-color: #ff4757;
+}
+
+/* Footer */
+footer {
+    padding: 20px 0;
+    background-color: #222;
+    color: white;
+    text-align: center;
 }
 
 /* Responsive Styles */
@@ -141,3 +237,4 @@ header nav ul li a:hover {
         margin: 10px 0;
     }
 }
+
