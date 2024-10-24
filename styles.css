@@ -272,6 +272,79 @@ footer {
 .secret-vibe:hover::before {
     color: rgba(255, 255, 255, 0.2);
 }
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fafafa;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* Secret Projects Styles */
+.secret-vibe {
+    background-color: #000;
+    color: #ff4757;
+    border: 2px dashed #ff4757;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 30px;
+}
+
+/* Code Game Styles */
+#code-game {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.code-inputs input {
+    width: 30px;
+    height: 30px;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Destruction Countdown */
+#countdown {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #ff4757;
+}
+
+#timer {
+    font-weight: bold;
+}
+
+/* Dust Effect */
+.destruction * {
+    animation: dustEffect 5s forwards;
+}
+
+@keyframes dustEffect {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(50px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
     
 }
 
