@@ -12,7 +12,7 @@ const bird = {
     radius: 30,
     gravity: 0.2,
     velocity: 0,
-    lift: -2 // Zıplama kuvveti
+    lift: -6 // Zıplama kuvveti
 };
 
 const pipes = [];
