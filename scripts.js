@@ -4,6 +4,7 @@ let isJumping = false;
 let jumpHeight = 50;
 let pipes = [];
 let score = 0;
+let gameStarted = false; // Oyunun başlamış olup olmadığını kontrol eden değişken
 
 // Karakterin başlangıç pozisyonu
 player.style.bottom = '50%';
@@ -19,7 +20,14 @@ function jump() {
                 jumpCount += 5;
             } else {
                 clearInterval(jumpInterval);
-                isJumping = false;
+                const fallInterval = setInterval(() => {
+                    if (parseInt(player.style.bottom) > 0) {
+                        player.style.bottom = `${parseInt(player.style.bottom) - gravity}px`;
+                    } else {
+                        clearInterval(fallInterval);
+                        isJumping = false;
+                    }
+                }, 20);
             }
         }, 20);
     }
@@ -36,7 +44,7 @@ function applyGravity() {
 function createPipe() {
     const pipeTop = document.createElement('div');
     const pipeBottom = document.createElement('div');
-    
+
     pipeTop.classList.add('pipe', 'top');
     pipeBottom.classList.add('pipe', 'bottom');
 
@@ -95,16 +103,24 @@ function checkCollision() {
 
 // Oyun döngüsü
 function gameLoop() {
-    applyGravity();
-    movePipes();
-    checkCollision();
+    if (gameStarted) {
+        applyGravity();
+        movePipes();
+        checkCollision();
+    }
     requestAnimationFrame(gameLoop);
 }
 
 // Başlat
 document.addEventListener('keydown', (event) => {
-    if (event.key === ' ') jump();
+    if (event.key === ' ') {
+        if (!gameStarted) {
+            gameStarted = true; // Oyun başlamış oldu
+            setInterval(createPipe, 2000); // Boruları oluşturmaya başla
+        }
+        jump(); // Zıpla
+    }
 });
 
-setInterval(createPipe, 2000);
+// İlk oyun döngüsü çağrısı
 gameLoop();
