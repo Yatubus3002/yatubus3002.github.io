@@ -5,11 +5,10 @@ let jumpHeight = 50;
 let pipes = [];
 let score = 0;
 
-// Player Jump
-document.addEventListener('keydown', (event) => {
-    if (event.key === ' ') jump();
-});
+// Karakterin başlangıç pozisyonu
+player.style.bottom = '50%';
 
+// Oyuncu zıplama işlevi
 function jump() {
     if (!isJumping) {
         isJumping = true;
@@ -26,12 +25,14 @@ function jump() {
     }
 }
 
-// Gravity Effect
+// Yerçekimi etkisi
 function applyGravity() {
-    player.style.bottom = `${parseInt(player.style.bottom) - gravity}px`;
+    if (parseInt(player.style.bottom) > 0) {
+        player.style.bottom = `${parseInt(player.style.bottom) - gravity}px`;
+    }
 }
 
-// Create Pipes
+// Boru oluşturma
 function createPipe() {
     const pipeTop = document.createElement('div');
     const pipeBottom = document.createElement('div');
@@ -39,10 +40,13 @@ function createPipe() {
     pipeTop.classList.add('pipe', 'top');
     pipeBottom.classList.add('pipe', 'bottom');
 
-    // Pipe positions
-    const randomHeight = Math.floor(Math.random() * 300) + 100;
+    // Rastgele yükseklik ayarla
+    const randomHeight = Math.floor(Math.random() * 200) + 100;
     pipeTop.style.height = `${randomHeight}px`;
     pipeBottom.style.height = `${400 - randomHeight}px`;
+
+    pipeTop.style.left = '100%';
+    pipeBottom.style.left = '100%';
 
     document.getElementById('gameContainer').appendChild(pipeTop);
     document.getElementById('gameContainer').appendChild(pipeBottom);
@@ -50,29 +54,25 @@ function createPipe() {
     pipes.push({ top: pipeTop, bottom: pipeBottom });
 }
 
-// Move Pipes
+// Boruları hareket ettir
 function movePipes() {
-    pipes.forEach(pipe => {
+    pipes.forEach((pipe, index) => {
         const pipeLeft = parseInt(pipe.top.style.left);
-        pipe.top.style.left = `${pipeLeft - 2}px`;
-        pipe.bottom.style.left = `${pipeLeft - 2}px`;
-        
-        if (pipeLeft < -80) {
+        if (pipeLeft > -80) {
+            pipe.top.style.left = `${pipeLeft - 2}px`;
+            pipe.bottom.style.left = `${pipeLeft - 2}px`;
+        } else {
             pipe.top.remove();
             pipe.bottom.remove();
-            pipes.shift();
+            pipes.splice(index, 1);
             score++;
             console.log("Score: ", score);
         }
     });
 }
 
-// Game Loop
-function gameLoop() {
-    applyGravity();
-    movePipes();
-
-    // Çarpışma Kontrolü
+// Çarpışma kontrolü
+function checkCollision() {
     pipes.forEach(pipe => {
         const playerBottom = parseInt(player.style.bottom);
         const playerTop = playerBottom + player.clientHeight;
@@ -91,10 +91,20 @@ function gameLoop() {
             location.reload();
         }
     });
+}
 
+// Oyun döngüsü
+function gameLoop() {
+    applyGravity();
+    movePipes();
+    checkCollision();
     requestAnimationFrame(gameLoop);
 }
 
 // Başlat
+document.addEventListener('keydown', (event) => {
+    if (event.key === ' ') jump();
+});
+
 setInterval(createPipe, 2000);
 gameLoop();
