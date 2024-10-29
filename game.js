@@ -45,10 +45,12 @@ function gameOver() {
     isGameOver = true;
     ctx.font = '50px Arial';
     ctx.fillStyle = '#000';
-    ctx.fillText('Game Over', canvas.width / 2 - 150, canvas.height / 2);
+    ctx.fillText('Zıpla Çıyan Zıpla', canvas.width / 2 - 150, canvas.height / 2 - 50); // Oyun adını ekleyin
     ctx.font = '30px Arial';
+    ctx.fillText('Game Over', canvas.width / 2 - 150, canvas.height / 2);
     ctx.fillText('Press Space to Restart', canvas.width / 2 - 150, canvas.height / 2 + 50);
 }
+
 
 function updateBird() {
     bird.velocity += bird.gravity;
