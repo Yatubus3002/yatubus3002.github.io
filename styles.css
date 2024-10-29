@@ -1,23 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
 body {
   margin: 0;
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-  user-select: none;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
 }
-header {
+
+#game-container {
+  position: relative;
+  width: fit-content;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+canvas {
+  display: block;
   margin: 0 auto;
-  width: 431px;
+  background-image: url('bg.jpg'); /* Set your background image here */
+  background-size: cover;
 }
+
+#instructions {
+  text-align: center;
+  margin-top: 20px;
+}
+
 h1 {
-  background: url("https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png") 0% 340px;
-  padding: 1.2rem 0;
-  margin: 0;
-}
-.score-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 6px;
-  background: #5EE270;
+  text-align: center;
 }
