@@ -2,10 +2,10 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 const bird = {
-    x: 50,
+    x: 100,
     y: canvas.height / 2,
-    radius: 15,
-    gravity: 0.6,
+    radius: 30,
+    gravity: 0.2,
     velocity: 0,
     lift: -12
 };
@@ -16,7 +16,7 @@ const pipeWidth = 100;
 let score = 0;
 let isGameOver = false;
 let attempts = 0;
-const maxAttempts = 3;
+const maxAttempts = 30;
 
 // Load the bird image
 const birdImg = new Image();
