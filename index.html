@@ -1,59 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Σουβουθίκος - Personal Portfolio</title>
+    <title>Mini Platform Oyunu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Σουβουθίκος</div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="projects" class="projects-section">
-        <h2>My Projects</h2>
-        <div class="project-box secret-vibe">
-            <h3>Project X</h3>
-            <p class="secret-text">Classified Information. Restricted Access Only.</p>
-
-            <!-- Code Game -->
-            <div id="code-game">
-                <h4>Enter the Secret Code to Access:</h4>
-                <div class="code-inputs">
-                    <input type="text" maxlength="1" id="code-1">
-                    <input type="text" maxlength="1" id="code-2">
-                    <input type="text" maxlength="1" id="code-3">
-                    <input type="text" maxlength="1" id="code-4">
-                    <input type="text" maxlength="1" id="code-5">
-                    <input type="text" maxlength="1" id="code-6">
-                    <input type="text" maxlength="1" id="code-7">
-                    <input type="text" maxlength="1" id="code-8">
-                </div>
-                <button onclick="checkCode()">Submit Code</button>
-                <div id="countdown" class="hidden">Unauthorized access attempt detected.</div>
-
-            </div>
-        </div>
-
-        <div class="project-box secret-vibe">
-            <h3>Project Sub0</h3>
-            <p class="secret-text">Highly Confidential. Handle with Care.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Σουβουθίκος. All Rights Reserved.</p>
-    </footer>
-
-    <script src="scripts.js"></script>
+    <div id="gameContainer">
+        <div id="player"></div>
+        <div class="platform" style="left: 100px; bottom: 50px;"></div>
+        <div class="platform" style="left: 300px; bottom: 100px;"></div>
+        <div class="platform" style="left: 500px; bottom: 150px;"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
