@@ -1,25 +1,31 @@
-body {
+html, body {
+    height: 100%; /* Tam yükseklik */
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Aşağı kaydırmayı engelle */
     font-family: Arial, sans-serif;
     background-color: #f1f1f1;
 }
 
 #game-container {
     position: relative;
-    width: fit-content;
-    margin: 50px auto;
+    width: 100vw; /* Tam genişlik */
+    height: 100vh; /* Tam yükseklik */
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 0; /* Kenarları yuvarlatma yok */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* İçeriği ortalama */
 }
 
 canvas {
     display: block;
-    margin: 0 auto;
-    background-image: url('bg.jpg'); /* Set your background image here */
-    background-size: cover;
+    width: 100%; /* %100 genişlik */
+    height: auto; /* Orantıyı koru */
+    background-image: url('bg.jpg'); /* Arka plan resmi */
+    background-size: cover; /* Arka planın tam görünmesini sağla */
 }
 
 #instructions {
