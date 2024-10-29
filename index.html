@@ -1,42 +1,21 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oyun</title>
-    <style>
-        #gameContainer {
-            position: relative;
-            width: 100%;
-            height: 400px; /* Oyun alanının yüksekliği */
-            overflow: hidden; /* Taşan elemanları gizle */
-            background-color: lightblue; /* Oyun alanının rengi */
-        }
-        #player {
-            position: absolute;
-            left: 50px; /* Oyuncunun sol pozisyonu */
-            bottom: 50%; /* Oyuncunun başlangıç yüksekliği */
-            width: 30px; /* Oyuncunun genişliği */
-            height: 30px; /* Oyuncunun yüksekliği */
-            background-color: red; /* Oyuncunun rengi */
-        }
-        .pipe {
-            position: absolute;
-            background-color: green; /* Borunun rengi */
-            width: 80px; /* Borunun genişliği */
-        }
-        .pipe.top {
-            bottom: 100%; /* Üst borunun alt kenarının oyun alanının üst kenarı */
-        }
-        .pipe.bottom {
-            top: 100%; /* Alt borunun üst kenarının oyun alanının alt kenarı */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div id="gameContainer">
-        <div id="player"></div>
+    <div class="background"></div>
+    <img class="bird" src="logo.png" alt="bird-img">
+    <div class="message">
+        Press Enter To Start Game
     </div>
-    <script src="script.js"></script> <!-- JavaScript dosyanı buraya ekle -->
+    <div class="score">
+        <span class="score_title"></span>
+        <span class="score_val"></span>
+    </div>
+    <script src="gfg.js"></script>
 </body>
+
 </html>
