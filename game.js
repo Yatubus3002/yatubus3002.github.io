@@ -7,11 +7,11 @@ const bird = {
     radius: 30,
     gravity: 0.2,
     velocity: 0,
-    lift: -12
+    lift: -4
 };
 
 const pipes = [];
-const pipeGap = 250;
+const pipeGap = 300;
 const pipeWidth = 100;
 let score = 0;
 let isGameOver = false;
