@@ -1,108 +1,103 @@
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-const img = new Image();
-img.src = "https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png";
 
-// general settings
-let gamePlaying = false;
-const gravity = .5;
-const speed = 6.2;
-const size = [51, 36];
-const jump = -11.5;
-const cTenth = (canvas.width / 10);
+const bird = {
+    x: 50,
+    y: canvas.height / 2,
+    radius: 15,
+    gravity: 0.6,
+    velocity: 0,
+    lift: -12
+};
 
-let index = 0,
-    bestScore = 0, 
-    flight, 
-    flyHeight, 
-    currentScore, 
-    pipe;
+const pipes = [];
+const pipeGap = 250;
+const pipeWidth = 100;
+let score = 0;
+let isGameOver = false;
+let attempts = 0;
+const maxAttempts = 3;
+// Load the bird image
+const birdImg = new Image();
+birdImg.src = 'bird.png'; // Set your bird image file path here
 
-// pipe settings
-const pipeWidth = 78;
-const pipeGap = 270;
-const pipeLoc = () => (Math.random() * ((canvas.height - (pipeGap + pipeWidth)) - pipeWidth)) + pipeWidth;
-
-const setup = () => {
-  currentScore = 0;
-  flight = jump;
-
-  // set initial flyHeight (middle of screen - size of the bird)
-  flyHeight = (canvas.height / 2) - (size[1] / 2);
-
-  // setup first 3 pipes
-  pipes = Array(3).fill().map((a, i) => [canvas.width + (i * (pipeGap + pipeWidth)), pipeLoc()]);
+function drawBird() {
+    ctx.drawImage(birdImg, bird.x - bird.radius, bird.y - bird.radius, bird.radius * 2, bird.radius * 2);
 }
 
-const render = () => {
-  // make the pipe and bird moving 
-  index++;
 
-  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+// Load the pipe image
+const pipeImg = new Image();
+pipeImg.src = 'pipe.png'; // Set your pipe image file path here
 
-  // background first part 
-  ctx.drawImage(img, 0, 0, canvas.width, canvas.height, -((index * (speed / 2)) % canvas.width) + canvas.width, 0, canvas.width, canvas.height);
-  // background second part
-  ctx.drawImage(img, 0, 0, canvas.width, canvas.height, -(index * (speed / 2)) % canvas.width, 0, canvas.width, canvas.height);
-  
-  // pipe display
-  if (gamePlaying){
-    pipes.map(pipe => {
-      // pipe moving
-      pipe[0] -= speed;
-
-      // top pipe
-      ctx.drawImage(img, 432, 588 - pipe[1], pipeWidth, pipe[1], pipe[0], 0, pipeWidth, pipe[1]);
-      // bottom pipe
-      ctx.drawImage(img, 432 + pipeWidth, 108, pipeWidth, canvas.height - pipe[1] + pipeGap, pipe[0], pipe[1] + pipeGap, pipeWidth, canvas.height - pipe[1] + pipeGap);
-
-      // give 1 point & create new pipe
-      if(pipe[0] <= -pipeWidth){
-        currentScore++;
-        // check if it's the best score
-        bestScore = Math.max(bestScore, currentScore);
-        
-        // remove & create new pipe
-        pipes = [...pipes.slice(1), [pipes[pipes.length-1][0] + pipeGap + pipeWidth, pipeLoc()]];
-        console.log(pipes);
-      }
-    
-      // if hit the pipe, end
-      if ([
-        pipe[0] <= cTenth + size[0], 
-        pipe[0] + pipeWidth >= cTenth, 
-        pipe[1] > flyHeight || pipe[1] + pipeGap < flyHeight + size[1]
-      ].every(elem => elem)) {
-        gamePlaying = false;
-        setup();
-      }
-    })
-  }
-  // draw bird
-  if (gamePlaying) {
-    ctx.drawImage(img, 432, Math.floor((index % 9) / 3) * size[1], ...size, cTenth, flyHeight, ...size);
-    flight += gravity;
-    flyHeight = Math.min(flyHeight + flight, canvas.height - size[1]);
-  } else {
-    ctx.drawImage(img, 432, Math.floor((index % 9) / 3) * size[1], ...size, ((canvas.width / 2) - size[0] / 2), flyHeight, ...size);
-    flyHeight = (canvas.height / 2) - (size[1] / 2);
-      // text accueil
-    ctx.fillText(`Best score : ${bestScore}`, 85, 245);
-    ctx.fillText('Click to play', 90, 535);
-    ctx.font = "bold 30px courier";
-  }
-
-  document.getElementById('bestScore').innerHTML = `Best : ${bestScore}`;
-  document.getElementById('currentScore').innerHTML = `Current : ${currentScore}`;
-
-  // tell the browser to perform anim
-  window.requestAnimationFrame(render);
+function drawPipes() {
+    for (let i = 0; i = canvas.height || bird.y &lt;= 0) {
+        gameOver();
+    }
 }
 
-// launch setup
-setup();
-img.onload = render;
+function updatePipes() {
+    if (pipes.length === 0 || pipes[pipes.length - 1].x &lt; canvas.width - 200) {
+        pipes.push({
+            x: canvas.width,
+            topHeight: Math.random() * (canvas.height - pipeGap - 300) + 150
+        });
+    }
 
-// start game
-document.addEventListener('click', () => gamePlaying = true);
-window.onclick = () => flight = jump;
+    for (let i = 0; i &lt; pipes.length; i++) {
+        pipes[i].x -= 2;
+
+        if (pipes[i].x + pipeWidth  pipes[i].x &amp;&amp;
+            bird.x - bird.radius &lt; pipes[i].x + pipeWidth &amp;&amp;
+            (bird.y - bird.radius  pipes[i].topHeight + pipeGap)) {
+            gameOver();
+        }
+
+        if (pipes[i].x + pipeWidth = maxAttempts) {
+        ctx.font = '50px Arial';
+        ctx.fillStyle = '#000';
+        ctx.fillText('Game Over', canvas.width / 2 - 150, canvas.height / 2);
+    } else {
+        ctx.font = '30px Arial';
+        ctx.fillStyle = '#000';
+        ctx.fillText('Start Again', canvas.width / 2 - 150, canvas.height / 2);
+    }
+    // Add event listener for restart
+    document.addEventListener('keydown', restartListener);
+}
+
+function restartListener(e) {
+    if (e.key === ' ' &amp;&amp; attempts = maxAttempts) return;
+
+    if (!isGameOver) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBird();
+        drawPipes();
+        updateBird();
+        updatePipes();
+        drawScore();
+        requestAnimationFrame(gameLoop);
+    } else {
+        drawInstructions();
+    }
+}
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === ' ' &amp;&amp; attempts &lt; maxAttempts) {
+        if (isGameOver) {
+            restartGame();
+        } else {
+            bird.velocity = bird.lift;
+        }
+    }
+});
+
+function restartGame() {
+    pipes.length = 0;
+    bird.y = canvas.height / 2;
+    score = 0;
+    isGameOver = false;
+    gameLoop();
+}
+
+gameLoop();
