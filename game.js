@@ -8,14 +8,14 @@ canvas.height = window.innerHeight; // Pencere yüksekliği
 const bird = {
     x: 50,
     y: canvas.height / 2,
-    radius: 15,
-    gravity: 0.6,
+    radius: 30,
+    gravity: 0.2,
     velocity: 0,
-    lift: -15 // Zıplama kuvveti
+    lift: -2 // Zıplama kuvveti
 };
 
 const pipes = [];
-const pipeGap = 250;
+const pipeGap = 400;
 const pipeWidth = 100;
 let score = 0;
 let isGameOver = false;
@@ -31,7 +31,7 @@ const pipeImg = new Image();
 pipeImg.src = 'pipe.png'; // Boru resminin yolu
 
 function drawBird() {
-    ctx.drawImage(birdImg, bird.x - bird.radius, bird.y - bird.radius, bird.radius * 2, bird.radius * 2);
+    ctx.drawImage(birdImg, bird.x - bird.radius, bird.y - bird.radius, bird.radius * 2, bird.radius * 2); // Kuşun boyutunu iki katına çıkar
 }
 
 function drawPipes() {
@@ -119,6 +119,19 @@ document.addEventListener('keydown', function (e) {
         }
     }
 });
+
+// Tuş olayını dinle ve scroll'u engelle
+document.addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault(); // Default kaydırmayı engelle
+    }
+});
+
+// Mobil cihazlar için dokunma olayını dinle
+document.addEventListener('touchstart', function (e) {
+    e.preventDefault(); // Default kaydırmayı engelle
+});
+
 
 // Mobil cihazlar için dokunmatik destek
 document.addEventListener('touchstart', function (e) {
