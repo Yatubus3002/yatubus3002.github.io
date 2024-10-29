@@ -3,15 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seni gidi Sarı Çiyan</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Oyun</title>
+    <style>
+        #gameContainer {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Oyun alanının yüksekliği */
+            overflow: hidden; /* Taşan elemanları gizle */
+            background-color: lightblue; /* Oyun alanının rengi */
+        }
+        #player {
+            position: absolute;
+            left: 50px; /* Oyuncunun sol pozisyonu */
+            bottom: 50%; /* Oyuncunun başlangıç yüksekliği */
+            width: 30px; /* Oyuncunun genişliği */
+            height: 30px; /* Oyuncunun yüksekliği */
+            background-color: red; /* Oyuncunun rengi */
+        }
+        .pipe {
+            position: absolute;
+            background-color: green; /* Borunun rengi */
+            width: 80px; /* Borunun genişliği */
+        }
+        .pipe.top {
+            bottom: 100%; /* Üst borunun alt kenarının oyun alanının üst kenarı */
+        }
+        .pipe.bottom {
+            top: 100%; /* Alt borunun üst kenarının oyun alanının alt kenarı */
+        }
+    </style>
 </head>
 <body>
     <div id="gameContainer">
-        <img id="player" src="character_image.jpg" alt="Character">
-        <div class="pipe top" style="left: 100%;"></div>
-        <div class="pipe bottom" style="left: 100%;"></div>
+        <div id="player"></div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- JavaScript dosyanı buraya ekle -->
 </body>
 </html>
