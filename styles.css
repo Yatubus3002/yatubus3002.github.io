@@ -1,41 +1,61 @@
-body {
+* {
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #87CEEB;
-    height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#gameContainer {
-    position: relative;
+body {
+    height: 100vh;
     width: 100vw;
+}
+
+.background {
     height: 100vh;
-    overflow: hidden;
-    background-color: #87CEEB;
+    width: 100vw;
+    background-color: skyblue;
 }
 
-#player {
-    position: absolute;
-    width: 50px;  /* Karakterin genişliğini ayarla */
-    height: auto;
-    left: 50px;
-    bottom: 50%;
-    border-radius: 50%;  /* Yuvarlak görünüm için */
+.bird {
+    height: 100px;
+    width: 160px;
+    position: fixed;
+    top: 40vh;
+    left: 30vw;
+    z-index: 100;
 }
 
-.pipe {
-    position: absolute;
-    width: 80px;
-    background-color: #228B22;
+.pipe_sprite {
+    position: fixed;
+    top: 40vh;
+    left: 100vw;
+    height: 70vh;
+    width: 6vw;
+    background-color: green;
 }
 
-.top {
-    height: 200px;
+.message {
+    position: fixed;
+    z-index: 10;
+    height: 10vh;
+    font-size: 10vh;
+    font-weight: 100;
+    color: black;
+    top: 12vh;
+    left: 20vw;
+    text-align: center;
+}
+
+.score {
+    position: fixed;
+    z-index: 10;
+    height: 10vh;
+    font-size: 10vh;
+    font-weight: 100;
+    color: goldenrod;
     top: 0;
+    left: 0;
 }
 
-.bottom {
-    height: 200px;
-    bottom: 0;
+.score_val {
+    color: gold;
 }
